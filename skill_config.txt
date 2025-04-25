@@ -1,0 +1,25 @@
+SupportName,光之高扬斯卡娅
+
+
+# Round 1
+UseSkill,1,1
+UseSkill,1,2
+UseSkill,2,2,1
+UseSkill,2,3,1
+UseSkill,3,2,1
+UseSkill,3,3,1
+Attack
+UseNoblePhantasm,1
+
+# Round 2
+UseSkill,2,1,1
+UseSkill,3,1,1
+Attack
+UseNoblePhantasm,1
+
+# Round 3
+MasterSkill_Atlas,1
+UseSkill,1,1
+UseSkill,1,2
+Attack
+UseNoblePhantasm,1
