@@ -74,6 +74,19 @@ StartBattle() {
             StopScript()
             MsgBox "已完成 " maxRunCount " 次执行，自动停止。", "提示", 0x1000
         }
+
+        if !isRunning
+            return
+        
+        ; 处理非好友助战后的结束按钮
+        if OCRHandler.ocrRecognize("结束") {
+            GameManager.WaitForTextAndClick("结束")
+        }
+        Sleep 2000  ; 等待3秒，确保界面稳定
+
+        if !isRunning
+            return
+
         
 
         if !GameManager.WaitForTextAndClick("连续出击") {
