@@ -36,11 +36,13 @@ myButtonStop.Enabled := false   ; 默认禁用停止按钮
 myGui.AddButton("x260 y50 w100 h40", "退出").OnEvent("Click", ExitScript)   ; 退出按钮
 
 myGui.AddText("x20 y110", "当前配置:")      ; 当前配置文本
-currentText := myGui.AddText("x100 y110 w260", "无")    ; 当前配置显示
+currentText := myGui.AddText("x100 y110 w100", "无")    ; 当前配置显示
 
 myGui.AddText("x20 y220", "选择配置:")  ; 选择配置文本
 cbConfigs := myGui.AddComboBox("x100 y220 w260 vSelectedConfig ReadOnly")    ; 配置下拉框
 
+myGui.AddButton("x360 y208 w40", "打开文件").OnEvent("Click", OpenConfigFolder)   ; 打开配置文件夹按钮
+myGui.AddButton("x290 y100 w80", "打开日志").OnEvent("Click", OpenLogsFolder)   ; 打开日志按钮
 ; ========== 体力回复 ==========
 myGui.AddText("x20 y260", "体力回复:")  ; 体力回复
 fruitBox := myGui.AddComboBox("x100 y260 w260 vFruitChoice Choose1 ReadOnly", ["黄金果实", "白银果实", "青铜果实"])
@@ -206,6 +208,22 @@ DeleteConfig(*) {
     MsgBox "配置已删除：" name,"Tips", 0x1000
    
     InitConfigList()
+}
+
+OpenConfigFolder(*){
+    global CONFIG_DIR
+    if DirExist(CONFIG_DIR)
+        Run CONFIG_DIR
+    else
+        MsgBox "配置文件夹不存在: " CONFIG_DIR, "提示", 0x1000
+}
+
+OpenLogsFolder(*) {
+    logsDir := A_ScriptDir "\Logs"
+    if DirExist(logsDir)
+        Run logsDir
+    else
+        MsgBox "日志文件夹不存在: " logsDir, "提示", 0x1000
 }
 
 

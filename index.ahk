@@ -144,7 +144,8 @@ class CombatActions         ; 战斗操作类
 
 
     static UseSkill(slot, skill, targetSlot := 0) {
-        coords := CombatActions.skillCoords[slot][skill]
+        Logger.Log("释放技能: UseSkill," slot "," skill "," targetSlot)  ; 记录日志""))
+        coords := CombatActions.skillCoords[slot][skill]       
         MouseHandler.ClientClick(coords[1], coords[2])  ; 点击技能
     
         if targetSlot >= 1 && targetSlot <= 3 {
@@ -157,11 +158,13 @@ class CombatActions         ; 战斗操作类
     
 
     static Attack() { ; 点击攻击
+        Logger.Log("释放技能: Attack")  ; 记录日志"")
         GameManager.WaitForTextAndClick("攻击")
         Sleep 1000  ; 等待1秒，确保界面稳定
     }
 
     static UseNoblePhantasm(slot) {
+        Logger.Log("释放技能: UseNoblePhantasm," slot)  ; 记录日志"")
         static positions := [620, 950, 1275]  ; 宝具1/2/3 的 X 坐标
         if (slot >= 1 && slot <= 3) {
             MouseHandler.ClientClick(positions[slot], 310)  ; 点击宝具图标
@@ -174,6 +177,7 @@ class CombatActions         ; 战斗操作类
     
 
     static MasterSkill_Atlas(targetSlot := 1) {
+        Logger.Log("释放技能: MasterSkill_Atlas," targetSlot)  ; 记录日志"")
         MouseHandler.ClientClick(1785, 465)  ; 打开御主技能
         Sleep 500
         MouseHandler.ClientClick(1623, 465)  ; 选择 Atlas 技能
@@ -184,6 +188,7 @@ class CombatActions         ; 战斗操作类
     }
 
     static MasterSkill_Change(frontIndex := 1, backIndex := 1) { ; 换人服
+        Logger.Log("释放技能: MasterSkill_Change," frontIndex "," backIndex)  ; 记录日志"")
         MouseHandler.ClientClick(1785, 465)  ; Master Skill 释放
         Sleep 500
         MouseHandler.ClientClick(1623, 465)
@@ -205,6 +210,7 @@ class CombatActions         ; 战斗操作类
     }
 
     static MasterSkill_AllBuff() { ; 换人服全体攻击力
+        Logger.Log("释放技能: MasterSkill_AllBuff")  ; 记录日志"")
         
         MouseHandler.ClientClick(1785, 465)
         Sleep 500
@@ -220,6 +226,7 @@ class CombatActions         ; 战斗操作类
 class GameManager       ; 游戏管理类
 {  
     static WaitForTextAndClick(targetText,timeoutMs := 200000) {
+        Logger.Log("等待并点击: " targetText)  ; 记录日志"")
         startTime := A_TickCount  ; 记录开始时间
         loop {
             if !isRunning
@@ -238,6 +245,7 @@ class GameManager       ; 游戏管理类
    
 
     static WaitForText(targetText,timeoutMs := 100000) {
+        Logger.Log("等待: " targetText)  ; 记录日志"")
         startTime := A_TickCount  ; 记录开始时间
         loop {
             if !isRunning
@@ -259,7 +267,7 @@ class GameManager       ; 游戏管理类
 
 ; ========== 读取技能配置 ==========
 LoadAndExecuteSkillsFromTxt(roundName){     ;读取技能配置.txt文件
-
+    Logger.Log("加载技能配置: " roundName)  ; 记录日志"")
 local path := A_ScriptDir "\skill_config.txt"   ; 配置文件路径(相对脚本所在路径)
     if !FileExist(path) {
         MsgBox "找不到配置文件: " path
@@ -365,6 +373,7 @@ local path := A_ScriptDir "\skill_config.txt"   ; 配置文件路径(相对脚�
 
 ; ========== 读取助战配置 ==========
 GetSupportServantNameFromTxt() {        ;读取助战配置文件
+    Logger.Log("读取助战配置文件")  ; 记录日志"")
     local path := A_ScriptDir "\skill_config.txt"
 
         if !FileExist(path) {
@@ -396,6 +405,7 @@ return ""  ; 找不到就返回空字符串
 
 ; ========== 选择助战配置 ==========
 SelectSupport(servantName) {
+    Logger.Log("助战角色: " servantName)  ; 记录日志"")
 
     if !isRunning
         return
@@ -415,11 +425,10 @@ SelectSupport(servantName) {
     }
     ;MsgBox "未找到助战角色: " servantName
 }
-
-
    
 
 UseFruit(fruitName){    
+    Logger.Log("使用果实: " fruitName)  ; 记录日志"")
     switch fruitName {
         case "黄金果实":
             if OCRHandler.ocrRecognize("黄金果实") {
@@ -456,4 +465,3 @@ UseFruit(fruitName){
     }
 
 }  
-          
