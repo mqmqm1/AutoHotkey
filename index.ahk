@@ -68,6 +68,11 @@ class OCRHandler            ; OCR文字识别类
         ocr := RapidOcr({models: A_ScriptDir '\plugin\RapidOCR\models'}, A_ScriptDir '\plugin\RapidOcr\64bit\RapidOcrOnnx.dll')  ; 初始化 OCR
         res := ocr.ocr_from_file("BattlePage.png", , true)  ; 识别所有文本
 
+        ; ==== 添加类型判断防止崩溃 ====
+        if !IsObject(res) || res.Length = 0 {
+        return false
+    }
+
         loop res.Length {
             block := res[A_Index]   ; 遍历每个识别到的文本块
             text := block.text       ; 获取识别到的文本
