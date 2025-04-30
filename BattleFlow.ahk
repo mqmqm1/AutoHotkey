@@ -97,8 +97,9 @@ StartBattle() {
         if OCRHandler.ocrRecognize("结束") {
             Logger.Log("检测到'结束'")
             GameManager.WaitForTextAndClick("结束")
+            Sleep 2000  ; 等待3秒，确保界面稳定
         }
-        Sleep 2000  ; 等待3秒，确保界面稳定
+        
 
         if !isRunning
             return
@@ -129,7 +130,7 @@ StartBattle() {
         servantName := GetSupportServantNameFromTxt()
 
         if servantName != "" {
-            Logger.Log("寻找助战: " servantName)
+            Logger.Log("读取助战: " servantName)
             SelectSupport(servantName)
         } else {
             Logger.Log("未在配置文件中找到助战名称")

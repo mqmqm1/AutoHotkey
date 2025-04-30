@@ -405,7 +405,7 @@ return ""  ; 找不到就返回空字符串
 
 ; ========== 选择助战配置 ==========
 SelectSupport(servantName) {
-    Logger.Log("助战角色: " servantName)  ; 记录日志"")
+    Logger.Log("选择助战: " servantName)  ; 记录日志"")
 
     if !isRunning
         return
