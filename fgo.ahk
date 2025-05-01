@@ -51,8 +51,8 @@ fruitBox.OnEvent("Change", OnFruitChange)
 
 ; ========== 执行次数规划 ==========
 myGui.AddText("x260 y10", "执行次数:")
-inputMaxRuns := myGui.AddEdit("x320 y10 w40 vMaxRunCount", "0")  ; 默认值为 0 表示不限制
-
+inputMaxRuns := myGui.AddEdit("x320 y10 w50 vMaxRunCount", "0")  ; 默认值为 0 表示不限制
+myGui.AddUpDown("0") ; 添加上下调节器
 
 myGui.AddText("x20 y180", "新配置命名:")    ; 新配置命名文本
 inputName := myGui.AddEdit("x100 y180 w260 vNewConfigName")  ; 新配置命名输入框
